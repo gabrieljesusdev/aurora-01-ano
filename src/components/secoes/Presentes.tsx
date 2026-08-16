@@ -69,7 +69,10 @@ export default function Presentes() {
 
                   <ul className="mt-5 space-y-2.5">
                     {cat.ideias.map((ideia) => (
-                      <li key={ideia} className="flex items-start gap-3 text-[15px]">
+                      <li
+                        key={ideia}
+                        className="flex items-start gap-3 text-[15px]"
+                      >
                         <span
                           className={`mt-[7px] h-2 w-2 shrink-0 rounded-full ${c.marcador}`}
                           aria-hidden="true"
@@ -86,9 +89,9 @@ export default function Presentes() {
 
         <Revelar atraso={0.2} className="mt-10">
           <p className="mx-auto max-w-lg rounded-3xl bg-white/70 px-6 py-5 text-center text-sm leading-relaxed text-tinta-suave shadow-fofo backdrop-blur">
-            <strong className="font-semibold text-tinta">Dica de amigo:</strong> não
-            precisa embrulhar com capricho — a {party.aniversariante} vai querer
-            rasgar o papel de qualquer jeito. 🎁
+            <strong className="font-semibold text-tinta">Dica de amigo:</strong>{" "}
+            não precisa embrulhar com capricho — a Aurorinha vai querer rasgar o
+            papel de qualquer jeito. 🎁
           </p>
         </Revelar>
       </div>
