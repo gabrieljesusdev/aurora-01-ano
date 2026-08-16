@@ -4,24 +4,25 @@
  */
 
 export const party = {
-  aniversariante: "Aurora",
+  aniversariante: "Aurora Cristina",
   idade: 1,
   /** Data e hora de início, no fuso local. Formato ISO. */
-  dataISO: "2026-09-12T16:00:00",
+  dataISO: "2026-10-10T15:00:00",
   /** Exibido no card de data. */
-  dataLabel: "Sábado, 12 de setembro",
-  horaLabel: "16h às 20h",
+  dataLabel: "Sábado, 10 de outubro",
+  horaLabel: "A partir das 15h",
   local: {
-    nome: "Buffet Porta dos Monstros",
-    endereco: "Rua das Risadas, 123 — Monstrópolis",
+    nome: "R. Hipólito Trigo Santiago, 99 - Jardim Cruzeiro",
+    endereco: "Franco da Rocha - SP, 07804-080",
     /** Deixe vazio ("") para esconder o botão de mapa. */
-    mapsUrl: "https://maps.google.com/?q=Rua+das+Risadas+123",
+    mapsUrl:
+      "https://maps.google.com/?q=R.+Hip%C3%B3lito+Trigo+Santiago%2C+99+-+Jardim+Cruzeiro%2C+Franco+da+Rocha+-+SP%2C+07804-080",
   },
   dressCode: "Venha colorido! Azul, rosa, roxo ou verde 💜",
   /** Nome do WhatsApp / contato para dúvidas. Deixe vazio para esconder. */
   contato: {
     nome: "Gabriel",
-    whatsapp: "5511999999999",
+    whatsapp: "5511940865435",
   },
 } as const;
 
