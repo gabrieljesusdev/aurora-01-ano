@@ -18,7 +18,7 @@ const cards = [
   },
   {
     emoji: "👕",
-    titulo: "Traje",
+    titulo: "Traje sugerido",
     linhas: [party.dressCode],
     cor: "from-verde-50 to-verde-100 border-verde-200",
   },

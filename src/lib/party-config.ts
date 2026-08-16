@@ -81,7 +81,7 @@ export const sugestoesDePresente: PresenteCategoria[] = [
     descricao: "Ela está crescendo rápido — tamanhos maiores são bem-vindos!",
     cor: "rosa",
     ideias: [
-      "Roupinhas tamanho 18 a 24 meses",
+      "Roupinhas tamanho 2",
       "Sapatinhos 19/20",
       "Meias antiderrapantes",
       "Pijamas de algodão",
@@ -95,9 +95,8 @@ export const sugestoesDePresente: PresenteCategoria[] = [
     cor: "verde",
     ideias: [
       "Fraldas tamanho G ou XG",
-      "Kit de talheres e pratinhos",
-      "Toalhas com capuz",
-      "Copo de transição",
+      "Lenço umedecido",
+      "Talco",
     ],
   },
 ];
