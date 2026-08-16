@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aurora faz 1 ano 💜
 
-## Getting Started
+Site de convite e confirmação de presença para o aniversário de 1 ano da Aurora.
+Tema Monstros S.A. em tons pastel de azul, rosa, roxo e verde.
 
-First, run the development server:
+O site tem **um propósito só**: o convidado clica em **"Quero participar"** e
+preenche um formulário de 3 passos. Tudo cai num banco de dados com status
+`pendente` ou `confirmado`.
+
+---
+
+## Como rodar
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre em http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para acessar do celular na mesma rede Wi-Fi, use o endereço `Network:` que o
+`npm run dev` imprime no terminal (algo como `http://192.168.15.3:3000`) —
+**com a porta `:3000`**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> Em desenvolvimento o Next só libera os arquivos de JavaScript para
+> `localhost`. As faixas de IP de rede local já estão liberadas em
+> `allowedDevOrigins` no `next.config.ts`; se sua rede usar outra faixa,
+> adicione ela lá e reinicie o `npm run dev`.
 
-## Learn More
+O conteúdo do convite é renderizado no servidor e animado só com CSS, então ele
+aparece mesmo se o JavaScript falhar ou demorar. O formulário, a contagem
+regressiva e o painel precisam de JavaScript.
 
-To learn more about Next.js, take a look at the following resources:
+## Painel da família
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+http://localhost:3000/admin — senha definida em `ADMIN_PASSWORD` no `.env`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Lá você vê:
 
-## Deploy on Vercel
+- total de pessoas confirmadas, pendentes e na lista
+- quantas crianças (até 12 anos) entre os acompanhantes
+- cada reserva com acompanhantes, idades, quem convidou e recado
+- botão para alternar entre **pendente** e **confirmado**, busca e filtros
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## O que editar
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| O quê | Onde |
+| --- | --- |
+| Data, hora, local, traje, contato | `src/lib/party-config.ts` |
+| Nomes dos anfitriões do formulário | `src/lib/party-config.ts` → `anfitrioes` |
+| Sugestões de presente | `src/lib/party-config.ts` → `sugestoesDePresente` |
+| Senha do painel | `.env` → `ADMIN_PASSWORD` |
+| Cores do tema | `src/app/globals.css` → bloco `@theme` |
+
+## O formulário
+
+1. **Nome da pessoa** — um campo só, Enter avança.
+2. **Acompanhantes** — nome + idade de cada um, contador ao vivo do total.
+   Ir sozinho é válido, é só continuar.
+3. **Quem convidou** — Gabriel, Jamilly, Ivone, Cássia ou Outro (libera um
+   campo de texto). Mostra um resumo e um recado opcional antes de enviar.
+
+Toda confirmação entra como `pendente`. A família confirma pelo painel.
+
+## Banco de dados
+
+SQLite via Prisma, arquivo `dev.db` na raiz.
+
+```bash
+npx prisma studio        # ver/editar os dados numa interface
+npx prisma migrate dev   # aplicar mudanças no schema
+```
+
+Para migrar pra Postgres depois, troque `provider` em `prisma/schema.prisma`,
+o adapter em `src/lib/prisma.ts` e a `DATABASE_URL`.
+
+## Stack
+
+Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · Framer Motion ·
+Prisma 7 + SQLite · Zod

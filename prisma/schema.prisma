@@ -1,0 +1,45 @@
+// Banco de confirmações da festa de 1 ano da Aurora 💙
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+/// Uma confirmação de presença (RSVP) feita por um convidado principal.
+model Rsvp {
+  id        String   @id @default(cuid())
+  /// Nome de quem preencheu o formulário
+  name      String
+  /// "Gabriel" | "Jamilly" | "Ivone" | "Cassia" | "Outro"
+  invitedBy String
+  /// Preenchido apenas quando invitedBy == "Outro"
+  invitedByOther String?
+  /// "pendente" | "confirmado"
+  status    String   @default("pendente")
+  /// Recado opcional para a família
+  message   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  companions Companion[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+/// Acompanhantes que a pessoa vai levar (nome + idade).
+model Companion {
+  id     String  @id @default(cuid())
+  name   String
+  /// Idade em anos. Obrigatória no formulário; nula só em registros antigos.
+  age    Int?
+  rsvpId String
+  rsvp   Rsvp    @relation(fields: [rsvpId], references: [id], onDelete: Cascade)
+
+  @@index([rsvpId])
+}
