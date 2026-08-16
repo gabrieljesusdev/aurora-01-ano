@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 /// Uma confirmação de presença (RSVP) feita por um convidado principal.
